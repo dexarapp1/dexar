@@ -257,7 +257,7 @@ function SendPreview({
   );
 }
 
-
+export function AgentChat() {
   const { address } = useAccount();
   const [messages,   setMessages]   = useState<Message[]>([]);
   const [input,      setInput]      = useState("");
