@@ -206,7 +206,7 @@ async function upsertWalletScore(address: string, data: WalletStats) {
     const walletAgeDays = data.firstTxRaw
       ? Math.floor((Date.now() - new Date(data.firstTxRaw).getTime()) / 86400000)
       : 0;
-    await supabase.from("wallet_scores").upsert({
+    const { error } = await supabase.from("wallet_scores").upsert({
       address:          address.toLowerCase(),
       wallet_score:     data.walletScore,
       total_txs:        data.totalTxs,
@@ -216,6 +216,8 @@ async function upsertWalletScore(address: string, data: WalletStats) {
       unique_addresses: data.uniqueAddresses,
       updated_at:       new Date().toISOString(),
     }, { onConflict: "address" });
+    if (error) console.error("[wallet-scores] upsert error:", error.message, error.details, error.hint);
+    else console.log("[wallet-scores] upserted:", address.toLowerCase());
   } catch (err) {
     console.error("[wallet-scores] upsert failed:", err);
   }
