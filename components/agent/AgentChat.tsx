@@ -312,33 +312,21 @@ function SendPreview({
 
     try {
       // Swap intent algıla
-      const intent = parseSwapIntent(trimmed);
-
-      if (intent && address) {
-        // Quote al
-        const quote = await fetchQuote(intent);
+      const swapI = parseSwapIntent(trimmed);
+      if (swapI && address) {
+        const quote = await fetchQuote(swapI);
         if (quote) {
-          setMessages(prev => [...prev, {
-            id:      crypto.randomUUID(),
-            role:    "assistant",
-            content: `Swapping ${intent.amountIn} ${intent.tokenIn} for ${intent.tokenOut}.`,
-          }]);
+          setMessages(prev => [...prev, { id: crypto.randomUUID(), role: "assistant", content: `Swapping ${swapI.amountIn} ${swapI.tokenIn} for ${swapI.tokenOut}.` }]);
           setSwapQuote(quote);
-          setLoading(false);
           return;
         }
       }
 
       // Send intent algıla
-      const sIntent = parseSendIntent(trimmed);
-      if (sIntent && address) {
-        setMessages(prev => [...prev, {
-          id:      crypto.randomUUID(),
-          role:    "assistant",
-          content: `Sending ${sIntent.amount} ${sIntent.token} to ${sIntent.recipient.slice(0, 6)}...${sIntent.recipient.slice(-4)}.`,
-        }]);
-        setSendIntent(sIntent);
-        setLoading(false);
+      const sendI = parseSendIntent(trimmed);
+      if (sendI && address) {
+        setMessages(prev => [...prev, { id: crypto.randomUUID(), role: "assistant", content: `Sending ${sendI.amount} ${sendI.token} to ${sendI.recipient.slice(0, 6)}...${sendI.recipient.slice(-4)}.` }]);
+        setSendIntent(sendI);
         return;
       }
 
@@ -352,9 +340,9 @@ function SendPreview({
       const data = await res.json();
       if (!res.ok) {
         setMessages(prev => [...prev, { id: crypto.randomUUID(), role: "assistant", content: data.error ?? "Something went wrong." }]);
-        return;
+      } else {
+        setMessages(prev => [...prev, { id: crypto.randomUUID(), role: "assistant", content: data.content }]);
       }
-      setMessages(prev => [...prev, { id: crypto.randomUUID(), role: "assistant", content: data.content }]);
     } catch {
       setMessages(prev => [...prev, { id: crypto.randomUUID(), role: "assistant", content: "Network error. Please try again." }]);
     } finally {
