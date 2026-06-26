@@ -103,6 +103,7 @@ async function fetchEthFirstTx(address: string): Promise<string | null> {
 }
 
 
+async function fetchArcStats(address: string) {
   const rpcUrl     = `https://rpc.testnet.arc.network`;
   const explorerV2 = `https://testnet.arcscan.app/api/v2`;
 
