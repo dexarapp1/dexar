@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useAccount, useBalance } from "wagmi";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { Header } from "@/components/layout/Header";
 import { MobileNav } from "@/components/layout/MobileNav";
 import { LoadingSpinner } from "@/components/ui/LoadingSpinner";
@@ -112,10 +111,9 @@ export default function ProfilePage() {
         <main className="flex min-h-[calc(100vh-56px)] flex-col items-center justify-center px-4 pb-24">
           <div className="text-center">
             <div className="text-5xl mb-4">👤</div>
-            <p className="text-sm mb-6" style={{ color: "var(--text-secondary)" }}>
+            <p className="text-sm" style={{ color: "var(--text-secondary)" }}>
               Connect your wallet to view your profile
             </p>
-            <ConnectButton label="Connect Wallet" />
           </div>
         </main>
         <MobileNav />
