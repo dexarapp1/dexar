@@ -115,7 +115,7 @@ export default function ProfilePage() {
             <p className="text-sm mb-6" style={{ color: "var(--text-secondary)" }}>
               Connect your wallet to view your profile
             </p>
-            <ConnectButton />
+            <ConnectButton label="Connect Wallet" />
           </div>
         </main>
         <MobileNav />
