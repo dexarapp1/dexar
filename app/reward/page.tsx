@@ -312,12 +312,6 @@ export default function RewardPage() {
               })}
             </div>
           )}
-
-          {!address && (
-            <div className="flex justify-center mt-2">
-              <ConnectButton label="Connect Wallet" />
-            </div>
-          )}
         </div>
 
         {/* ── Tasks ── */}
