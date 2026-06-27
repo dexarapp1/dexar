@@ -215,7 +215,7 @@ export default function RewardPage() {
           {/* Score row */}
           <div className="flex items-start justify-between mb-4">
             <div>
-              <p className="text-xs mb-1" style={{ color: "var(--text-secondary)" }}>Arc Score</p>
+              <p className="text-xs mb-1" style={{ color: "var(--text-secondary)" }}>Dexar Score</p>
               <p className="text-2xl font-bold" style={{ color: "var(--text-primary)" }}>
                 {score.toLocaleString("en-US")}{" "}
                 <span className="text-lg font-semibold" style={{ color: "var(--text-secondary)" }}>pts</span>
@@ -315,7 +315,7 @@ export default function RewardPage() {
 
           {!address && (
             <div className="flex justify-center mt-2">
-              <ConnectButton />
+              <ConnectButton label="Connect Wallet" />
             </div>
           )}
         </div>
