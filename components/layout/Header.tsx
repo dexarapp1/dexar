@@ -4,6 +4,7 @@ import Link         from "next/link";
 import { usePathname } from "next/navigation";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import { useTheme } from "@/lib/theme";
+import { SocialButtons } from "@/components/ui/SocialButtons";
 
 /* ── Nav emoji icons ── */
 const Emoji = ({ e }: { e: string }) => <span style={{ fontSize: 14, lineHeight: 1 }}>{e}</span>;
@@ -55,7 +56,7 @@ function ThemeToggle() {
 /* ── Arbi Logo — Routis'teki gibi ikon + isim ── */
 function ArbiLogo() {
   return (
-    <Link href="/swap" className="flex items-center no-underline shrink-0" style={{ marginLeft: "20px" }}>
+    <Link href="/swap" className="flex items-center no-underline shrink-0" style={{ marginLeft: "8px" }}>
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/dexar.png"
@@ -106,8 +107,11 @@ export function Header() {
           })}
         </nav>
 
-        {/* Right: theme + wallet */}
+        {/* Right: social + theme + wallet */}
         <div className="flex items-center gap-2 shrink-0">
+          <div className="hidden md:flex">
+            <SocialButtons />
+          </div>
           <ThemeToggle />
 
           <ConnectButton.Custom>
